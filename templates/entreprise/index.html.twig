@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EntrepriseController!{% endblock %}
+
+{% block body %}
+    <h1>Liste des entreprises</h1>
+
+    {# ceci est une boucle foreach  (for row in array) #}
+    {% for entreprise in entreprises %}
+        {{entreprise.raisonSociale ~ '( ' ~ entreprise.cp ~ ' - ' ~ entreprise.ville ~ ')' }}<br> {#  il représente un echo en PHP#}
+    {% endfor %}
+{% endblock %}
