@@ -136,4 +136,15 @@ class Entreprise
 
         return $this;
     }
+
+    public function getAdresseComplete():string { 
+        return $this->adresse .' '. $this->cp .' '. $this->ville;
+    }
+    public function getDateCreationFr ():string { 
+        return $this->dateCreation->format("D d M Y");
+    }
+
+    public function __toString(){
+        return $this->raisonSociale;
+    }
 }

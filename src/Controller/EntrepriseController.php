@@ -14,9 +14,15 @@ final class EntrepriseController extends AbstractController
     #[Route('/entreprise', name: 'app_entreprise')]
     public function index(EntrepriseRepository $entrepriseRepository): Response
     {
-        $entreprises = $entrepriseRepository->findAll();
+        $entreprises = $entrepriseRepository->findBy([], ["raisonSociale"=> "ASC"]);
         return $this->render('entreprise/index.html.twig', [
             'entreprises' => $entreprises
         ]);
+    }
+    // {id} est la variable que l'on recupere dans l'URL
+    #[Route('/entreprise/{id}', name: 'show_entreprise')] 
+    public function show(Entreprise $entreprise): Response{
+        return $this->render('entreprise/show.html.twig',
+                ['entreprise' => $entreprise]);
     }
 }

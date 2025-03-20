@@ -7,6 +7,7 @@
 
     {# ceci est une boucle foreach  (for row in array) #}
     {% for entreprise in entreprises %}
-        {{entreprise.raisonSociale ~ '( ' ~ entreprise.cp ~ ' - ' ~ entreprise.ville ~ ')' }}<br> {#  il représente un echo en PHP#}
+        
+        <a href="{{ path('show_entreprise', {'id':entreprise.id}) }}">{{entreprise.raisonSociale }}</a><br> {#  il représente un echo en PHP#}
     {% endfor %}
 {% endblock %}

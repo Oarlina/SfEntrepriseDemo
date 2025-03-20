@@ -30,6 +30,9 @@ class Employe
     #[ORM\JoinColumn(nullable: false)]
     private ?Entreprise $entreprise = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $ville = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -94,8 +97,27 @@ class Employe
 
         return $this;
     }
+    
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(?string $ville): static
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getAge(): ?string{
+        $now = new \DateTime();
+        $intervalle = $this->dateNaissance->diff($now);
+        return $intervalle->format("%y");
+    }
 
     public function __toString(){
         return $this->prenom. " ". $this->nom;
     }
+
 }
