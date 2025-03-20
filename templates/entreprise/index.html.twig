@@ -1,13 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EntrepriseController!{% endblock %}
+{% block title %}Liste des entreprises{% endblock %}
 
 {% block body %}
     <h1>Liste des entreprises</h1>
-
-    {# ceci est une boucle foreach  (for row in array) #}
-    {% for entreprise in entreprises %}
-        
-        <a href="{{ path('show_entreprise', {'id':entreprise.id}) }}">{{entreprise.raisonSociale }}</a><br> {#  il représente un echo en PHP#}
-    {% endfor %}
+    <a href="{{ path('new_entreprise') }}">Ajouter une entreprise</a> 
+    <br>
+    <table class="table table-striped">
+        <tbody>
+            {# ceci est une boucle foreach  (for row in array) #}
+            {% for entreprise in entreprises %}
+            <tr><th>
+                {# on fait l'affichage de la raison sociale de l'entreprise #}
+                <a href="{{ path('show_entreprise', {'id':entreprise.id}) }}">{{entreprise.raisonSociale }}</a><br> 
+            </th></tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

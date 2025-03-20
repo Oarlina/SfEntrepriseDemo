@@ -3,8 +3,7 @@
 {% block title %}Détail entreprise{% endblock %}
 
 {% block body %}
-    <h1>Détail de l'entreprise </h1>
-    <h2> {{entreprise}} </h2>
+    <h1>Détail de l'entreprise : {{entreprise}}</h1>
     <p> 
         <b>Adresse :</b> {{entreprise.adresseComplete }} <br>
         <b>Date de création : </b> {{entreprise.dateCreationFr}} 
@@ -25,7 +24,9 @@
                 </tbody>
             </table>
         {% else %}
-            Il n'y a pas de salariés dans cette entreprise
+            Il n'y a pas de salariés dans cette entreprise.
+            <br>
+            <a href="{{ path('new_employe') }}">Ajouter un employé</a>
         {% endif %}
     </p>
     

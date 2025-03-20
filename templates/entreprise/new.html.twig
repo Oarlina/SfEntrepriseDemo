@@ -5,6 +5,22 @@
 {% block body %}
     <h1>Ajouter une entreprise</h1>
 
-    {{ form(formAddEntreprise) }}
-    
+    {# on commence le formulaire pour le mettre dans le style que l'on souhaite  #}
+    {{ form_start(formAddEntreprise) }} 
+        {# on fait une ligne avec le prenom et le nom    #} 
+        {{ form_row(formAddEntreprise.raisonSociale)}}
+        <div class="row">
+            <div class="col-sm">
+                {{ form_row(formAddEntreprise.adresse)}}
+            </div>
+            <div class="col-sm">
+                {{ form_row(formAddEntreprise.ville)}}
+            </div>
+            <div class="col-sm">
+                {{ form_row(formAddEntreprise.cp)}}
+            </div>
+        </div>
+        </div>
+    {# on fini le formulaire  #}
+    {{ form_end(formAddEntreprise) }}
 {% endblock %}

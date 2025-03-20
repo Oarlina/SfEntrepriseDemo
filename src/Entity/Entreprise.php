@@ -35,6 +35,7 @@ class Entreprise
      * @var Collection<int, Employe>
      */
     #[ORM\OneToMany(targetEntity: Employe::class, mappedBy: 'entreprise', orphanRemoval: true)]
+    #[ORM\OrderBy(["nom" => "ASC"])] // on odronne dans l'ordre croissant le nom du salrié
     private Collection $employes;
 
     public function __construct()

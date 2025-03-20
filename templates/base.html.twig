@@ -23,8 +23,6 @@
             {# Un lien en Symfony s'écrit { { 'path( name du controller )' } } #}
             <a href="{{ path('app_entreprise') }}">Liste des entreprises</a>
             <a href="{{ path('app_employe') }}">Liste des employés</a>
-            <a href="{{ path('new_entreprise') }}">Ajouter une entreprise</a>
-            <a href="{{ path('new_employe') }}">Ajouter un employe</a>
         </nav>
         <main class="container">
             {% block body %}{% endblock %}
