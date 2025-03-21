@@ -3,7 +3,11 @@
 {% block title %}Ajouter une entreprise{% endblock %}
 
 {% block body %}
+    {% if edit %}
+    <h1>Modifier une entreprise</h1>
+    {% else %}
     <h1>Ajouter une entreprise</h1>
+    {% endif %}
 
     {# on commence le formulaire pour le mettre dans le style que l'on souhaite  #}
     {{ form_start(formAddEntreprise) }} 

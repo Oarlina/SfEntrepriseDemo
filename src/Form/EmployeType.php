@@ -14,8 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class EmployeType extends AbstractType
 {
-    // FormBuilder = c'est un objet. il permet de faire les champs du formulaires
-    // :void = 
+    // FormBuilder = c'est un objet. il permet de faire les champs du formulaire
+    // :void = c'est un type de retour de fonction. cela permet de faire en sorte que la fonction face une action plutot que de retourner un resultat
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -67,7 +67,7 @@ class EmployeType extends AbstractType
             ])
         ;
     }
-
+    // Options Resolver = permet d'appeler ->setDefaults() afin de rendre une option obligatoire et ne peut pas etre autrement
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

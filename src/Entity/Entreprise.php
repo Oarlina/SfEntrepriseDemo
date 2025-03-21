@@ -139,7 +139,7 @@ class Entreprise
         return $this->adresse .', '. $this->cp .'-'. $this->ville;
     }
     public function getDateCreationFr ():string { 
-        return $this->dateCreation->format("D d M Y");
+        return $this->dateCreation->format("D d M Y à H : i");
     }
 
     public function __toString(){

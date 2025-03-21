@@ -10,10 +10,19 @@
         <tbody>
             {# ceci est une boucle foreach  (for row in array) #}
             {% for entreprise in entreprises %}
-            <tr><th>
-                {# on fait l'affichage de la raison sociale de l'entreprise #}
-                <a href="{{ path('show_entreprise', {'id':entreprise.id}) }}">{{entreprise.raisonSociale }}</a><br> 
-            </th></tr>
+            <tr>
+                <th>
+                    {# on fait l'affichage de la raison sociale de l'entreprise #}
+                    <a href="{{ path('show_entreprise', {'id':entreprise.id}) }}">{{entreprise.raisonSociale }}</a>
+                    <br> 
+                </th>
+                <th>
+                    <a class="btn btn-warning" href="{{ path('edit_entreprise', {'id':entreprise.id}) }}">Modifier</a>
+                </th>
+                <th>
+                    <a class="btn btn-danger" href="{{ path('delete_entreprise', {'id':entreprise.id}) }}">Supprimer</a>
+                </th>
+            </tr>
             {% endfor %}
         </tbody>
     </table>

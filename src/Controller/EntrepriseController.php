@@ -29,18 +29,68 @@ final class EntrepriseController extends AbstractController
         // on cree une nouvelle entreprise 
         $form = $this->createForm(EntrepriseType::class, $entreprise); 
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() and $form->isValid()){
             $entreprise = $form->getData();
-
+            
             $entityManager->persist($entreprise); // c'est la prepare en PDO
             $entityManager->flush(); // c'est l'execute en PDO
-
+            
             return $this->redirectToRoute('app_entreprise');
         }
-
+        
         return $this->render('entreprise/new.html.twig',
-                ['formAddEntreprise' => $form]);
+        ['formAddEntreprise' => $form,
+        'edit' => false]); // on dit que le edit est faux pou que le titre du formulaire soit Ajouter et non modifier
+    }
+
+
+    // la méthode va modifier l'entreprise ( les valeurs déjà mis dans la BDD seront écrite et ont pourra modifier et enrgistrer dans la BDD)
+    #[Route('/entreprise/{id}/edit', name: 'edit_entreprise')] 
+    public function new_edit(Entreprise $entreprise = null, Request $request, EntityManagerInterface $entityManager): Response{
+        if (!$entreprise){
+            $entreprise = new Entreprise();
+        }            
+        // on cree une nouvelle entreprise 
+        $form = $this->createForm(EntrepriseType::class, $entreprise); 
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()){
+            $entreprise = $form->getData();
+            
+            $entityManager->persist($entreprise); // c'est la prepare en PDO
+            $entityManager->flush(); // c'est l'execute en PDO
+            
+            return $this->redirectToRoute('app_entreprise');
+        }
+        
+        return $this->render('entreprise/new.html.twig',
+        ['formAddEntreprise' => $form,
+        'edit' => $entreprise->getId()]);
+    }
+    
+    // supprime l'entreprise
+    #[Route('/entreprise/{id}/delete', name: 'delete_entreprise')] 
+    public function entreprise_delete(Entreprise $entreprise=null, Request $request, EntityManagerInterface $entityManager): Response{
+        if (!$entreprise){
+            $entreprise = new Entreprise();
+        }            
+        // on cree une nouvelle entreprise 
+        $form = $this->createForm(EntrepriseType::class, $entreprise); 
+        $form->handleRequest($request);
+        
+        // si le formulaire n'est pas valide et envoyer
+        if (!($form->isSubmitted() && $form->isValid())){
+            return $this->render('entreprise/new.html.twig',
+            ['formAddEntreprise' => $form]);
+        }
+        
+        $entreprise = $form->getData();
+        
+        $entityManager->persist($entreprise); // c'est la prepare en PDO
+        $entityManager->flush(); // c'est l'execute en PDO
+        
+        return $this->redirectToRoute('app_entreprise');
     }
 
     // {id} est la variable que l'on recupere dans l'URL
