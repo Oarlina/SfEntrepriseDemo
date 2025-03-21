@@ -3,14 +3,71 @@
 {% block title %}Hello DefaultController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="voc">
+        <h4>Voici l'arborescence que j'ai utilisé:</h4>
+        <p>
+            Le dossier public contient toujours le dossier image, javascript, css et uploads. <br>
+            <ul>
+                <li>Le dossier src :</li>
+                <ul>
+                    <li>- Un dossier <b>controller</b> : qui sera l'intermédiaire entre la vue et le modèle.</li>
+                    <li>- Un dossier <b>entity</b> : qui instancira les classes entreprise et employeur ainsi que leur attribut.</li>
+                    <li>- Un dosier <b>Form</b> : qui contiendra les informations formulaire de l'application web.</li>
+                    <li>- Un dossier <b>Repository</b> : il contiendra toutes les requetes SQL qui sera demandé à la BDD.  Par défaut il aura :</li>
+                    <ul>
+                        <li>find ($id, $lockeMode = null, $lockVersion = null) => permet de trouver selon un id,</li>
+                        <li>finOneBy (array, $criteria, array $orderBy = null) => on peut retrouver selon un élément,</li>
+                        <li>findALL() => on trouve tous les éléments d'une table</li>
+                        <li>finBy(array $criteria, array $orderby = null, $limit = null, $offset = null) => on trouve plusieurs élément selon un critère, 
+                            on peut les ordonnées donnée une limite de récupération.</li>
+                    </ul>
+                    <li>Un fichier <b>'Kernel.php'</b>: qui est la classe noyau dans Symfony. Il inclut plusieurs options confiurables.</li>
+                </ul>
+                <li>Le dossier templates :</li>
+                <ul>
+                    <li>Il représente toutes les pages de l'application web.</li>
+                    <li>Le dossier <b>default</b> :  il contient ma page d'acceuil.</li>
+                    <li>Le dossier <b>employe</b> : il contient les pages liées aux employes.</li>
+                    <li>Le dossier <b>entreprise</b> : il contient les pages liées aux entreprises. </li>
+                    <li>Le fichier <b>'base.html.twig'</b> :  il représente le fichier layout.php  qui est le squelette de l'application web.</li>
+                </ul>
+            </ul>  
+        </p>
+        <h4>Voici le vocabulaire que j'ai appris : </h4>
+        <ul>
+            {# 
+        Request = représente les supperglobales ( $_GET, $_POST, $_FILES, $_COOKIE, $_SESSION, ...) c'est un objet
+        EntityManagerInterface = l'entity Manager est un object qui permet d'enregistrer, de chercher des objets dans la BDD
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        $form->isSubmitted() = si on a cliquer sur le bouton valider
+        $form->isValid() = si les variables sont celle qui ont ete attendu (c'est un booléen)
+        $this->render() = vient de twig. c'est une méthode qui permet de généré une réponse HTML en éxécutant un fichier twig #}
+            <li>#[Route('/employe', name: 'app_employe') ] </li>
+            <ul>
+                <li>Route est un attribut natif de Symfony. On donne d'abord le chemin qui sera afficher dans l'URL (Uniform Resource Locator), puis le nom de la méthode que l'on appelle.</li>
+            </ul>
+            <li>public function name(EntityManagerInterface $entityManager): Response</li>
+            <ul>
+                <li>: Response = c'est un objet qui récupère la réponse, le statut du code et le tableau de têtes HTTP.</li>
+                <li>Entity Manager = c'est un objet qui permet d'enregistrer, de chercher et modifier dans la base de données. </li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p>
+            
 
-    This friendly message is coming from: 🦄
-</div>
+        </p>
+    </div>
 {% endblock %}
