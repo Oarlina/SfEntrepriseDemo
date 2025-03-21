@@ -13,14 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class EmployeController extends AbstractController
 {
-    #[Route('/employe', name: 'app_employe')]
-    public function index(EmployeRepository $employeRepository): Response
-    {
-        $employes = $employeRepository->findBy([], ['nom' => 'ASC']);
-        return $this->render('employe/index.html.twig', [
-            'employes' => $employes,
-        ]);
-    }
     /* 
         Route=  c'est un attribut, c'est natif de Symfony
                 -> donne d'abord l'arborescence faite sur pour acceder a la page et le name est le nom de la route ce qui permet l'appeler plus facilement dans le code
@@ -34,6 +26,16 @@ final class EmployeController extends AbstractController
         $form->isValid() = si les variables sont celle qui ont ete attendu (c'est un booléen)
         $this->render() = vient de twig. c'est une méthode qui permet de généré une réponse HTML en éxécutant un fichier twig
     */
+    
+    #[Route('/employe', name: 'app_employe')]
+    public function index(EmployeRepository $employeRepository): Response
+    {
+        $employes = $employeRepository->findBy([], ['nom' => 'ASC']);
+        return $this->render('employe/index.html.twig', [
+            'employes' => $employes,
+        ]);
+    }
+    
     // on le defini avant la fonction show car l'ordi va d'abbord chercher entreprise/id avant entreprise/new se qui cree une erreur
     #[Route('/employe/new', name: 'new_employe')] 
     #[Route('/employe/{id}/edit', name: 'edit_employe')] 
