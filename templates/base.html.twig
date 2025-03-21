@@ -19,10 +19,19 @@
         {% endblock %}
     </head>
     <body>
-        <nav>
-            {# Un lien en Symfony s'écrit { { 'path( name du controller )' } } #}
-            <a href="{{ path('app_entreprise') }}">Liste des entreprises</a>
-            <a href="{{ path('app_employe') }}">Liste des employés</a>
+        {# ma nav est styliser par bootstrap  #}
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    {# Un lien en Symfony s'écrit { { 'path( name du controller )' } } #}
+                    <a class="nav-link" aria-current="page" href="{{ path('app_entreprise') }}">...Liste des entreprises..  </a>
+                    <a class="nav-link" aria-current="page" href="{{ path('app_employe') }}"> ..Liste des employés...</a>
+                </div>
+            </div>
         </nav>
         <main class="container">
             {% block body %}{% endblock %}

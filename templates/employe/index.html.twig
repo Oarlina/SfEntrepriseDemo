@@ -4,14 +4,22 @@
 
 {% block body %}
     <h1>Liste des employés</h1>
-    <a href="{{ path('new_employe') }}">Ajouter un employé</a>
+    <a class="btn btn-success" href="{{ path('new_employe') }}">Ajouter un employé</a>
     <br>
     <table class="table table-striped">
         <tbody>
                 {% for employe in employes %}
-                    <tr><th>
-                        <a href="{{ path('show_employe', {'id':employe.id}) }}">{{employe}}</a><br>
-                    </th></tr>
+                    <tr>
+                        <th>
+                            <a href="{{ path('show_employe', {'id':employe.id}) }}">{{employe}}</a><br>
+                        </th>
+                        <th>
+                            <a class="btn btn-warning" href="{{ path('edit_employe', {'id':employe.id}) }}">Modifier</a>
+                        </th>
+                        <th>
+                            <a class="btn btn-danger" href="{{ path('edit_employe', {'id':employe.id}) }}">Supprimer</a>
+                        </th>
+                    </tr>
                 {% endfor %}
         </tbody>
     </table>

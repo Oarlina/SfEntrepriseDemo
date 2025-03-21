@@ -36,9 +36,12 @@ final class EmployeController extends AbstractController
     */
     // on le defini avant la fonction show car l'ordi va d'abbord chercher entreprise/id avant entreprise/new se qui cree une erreur
     #[Route('/employe/new', name: 'new_employe')] 
-    public function new(Request $request, EntityManagerInterface $entityManager): Response{
-        // on cree un nouvel employe 
-        $employe = new Employe();
+    #[Route('/employe/{id}/edit', name: 'edit_employe')] 
+    public function new(Employe $employe = null , Request $request, EntityManagerInterface $entityManager): Response{
+        if (!$employe){
+            // on cree un nouvel employe 
+            $employe = new Employe();
+        }
         // on cree le formulaire de l'employé
         $form = $this->createForm(EmployeType::class, $employe); 
         $form->handleRequest($request);
@@ -53,7 +56,8 @@ final class EmployeController extends AbstractController
         }
         
         return $this->render('employe/new.html.twig',
-                ['formAddEmploye' => $form]);
+                ['formAddEmploye' => $form,
+                'edit' => $employe->getId()]);
     }
 
     #[Route('/employe/{id}', name: 'show_employe')]

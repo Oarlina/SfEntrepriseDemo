@@ -3,7 +3,11 @@
 {% block title %}Ajouter un employé{% endblock %}
 
 {% block body %}
+    {% if edit %}
+    <h1>Modifier un employé</h1>
+    {% else %}
     <h1>Ajouter un employé</h1>
+    {% endif %}
 
     {# on commence le formulaire pour le mettre dans le style que l'on souhaite  #}
     {{ form_start(formAddEmploye) }} 

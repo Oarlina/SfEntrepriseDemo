@@ -22,30 +22,9 @@ final class EntrepriseController extends AbstractController
         ]);
     }
 
-    // on le defini avant la fonction show car l'ordi va d'abbord chercher entreprise/id avant entreprise/new se qui cree une erreur
+    // on le defini avant la fonction car l'ordi va d'abbord chercher entreprise/id avant entreprise/new se qui cree une erreur
+    // la méthode va modifier l'entreprise ( les valeurs déjà mis dans la BDD seront écrite et ont pourra modifier et enrgistrer dans la BDD) ou la creer
     #[Route('/entreprise/new', name: 'new_entreprise')] 
-    public function new(Request $request, EntityManagerInterface $entityManager): Response{
-        $entreprise = new Entreprise();
-        // on cree une nouvelle entreprise 
-        $form = $this->createForm(EntrepriseType::class, $entreprise); 
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() and $form->isValid()){
-            $entreprise = $form->getData();
-            
-            $entityManager->persist($entreprise); // c'est la prepare en PDO
-            $entityManager->flush(); // c'est l'execute en PDO
-            
-            return $this->redirectToRoute('app_entreprise');
-        }
-        
-        return $this->render('entreprise/new.html.twig',
-        ['formAddEntreprise' => $form,
-        'edit' => false]); // on dit que le edit est faux pou que le titre du formulaire soit Ajouter et non modifier
-    }
-
-
-    // la méthode va modifier l'entreprise ( les valeurs déjà mis dans la BDD seront écrite et ont pourra modifier et enrgistrer dans la BDD)
     #[Route('/entreprise/{id}/edit', name: 'edit_entreprise')] 
     public function new_edit(Entreprise $entreprise = null, Request $request, EntityManagerInterface $entityManager): Response{
         if (!$entreprise){
