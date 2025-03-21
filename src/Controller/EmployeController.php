@@ -59,6 +59,14 @@ final class EmployeController extends AbstractController
                 ['formAddEmploye' => $form,
                 'edit' => $employe->getId()]);
     }
+    // ma fonction va supprimer un employe
+    #[Route('/employe/{id}/delete', name: 'delete_employe')]
+    public function delete(Employe $employe, EntityManagerInterface $entityManager): Response {
+        $entityManager->remove($employe); // on prepare la suppression de l'employe
+        $entityManager->flush(); // on supprime l'employe
+
+        return $this->redirectToRoute('app_employe');
+    }
 
     #[Route('/employe/{id}', name: 'show_employe')]
     public function show(Employe $employe): Response

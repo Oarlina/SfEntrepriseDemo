@@ -72,6 +72,15 @@ final class EntrepriseController extends AbstractController
         return $this->redirectToRoute('app_entreprise');
     }
 
+    // ma fonction va supprimer un entreprise
+    #[Route('/entreprise/{id}/delete', name: 'delete_entreprise')]
+    public function delete(Entreprise $entreprise, EntityManagerInterface $entityManager): Response {
+        $entityManager->remove($entreprise); // on prepare la suppression de l'entreprise
+        $entityManager->flush(); // on supprime l'entreprise
+
+        return $this->redirectToRoute('app_entreprise');
+    }
+
     // {id} est la variable que l'on recupere dans l'URL
     #[Route('/entreprise/{id}', name: 'show_entreprise')] 
     public function show(Entreprise $entreprise): Response{
