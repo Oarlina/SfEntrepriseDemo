@@ -7,7 +7,7 @@
 
     {# on commence le formulaire pour le mettre dans le style que l'on souhaite  #}
     {{ form_start(formAddEntreprise) }} 
-        {# on fait une ligne avec le prenom et le nom    #} 
+        {# on fait une ligne avec la raison sociale et l'addresse complète #} 
         {{ form_row(formAddEntreprise.raisonSociale)}}
         <div class="row">
             <div class="col-sm">
@@ -20,6 +20,7 @@
                 {{ form_row(formAddEntreprise.cp)}}
             </div>
         </div>
+        {{ form_row(formAddEntreprise.dateCreation)}}
         </div>
     {# on fini le formulaire  #}
     {{ form_end(formAddEntreprise) }}

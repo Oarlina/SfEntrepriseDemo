@@ -8,15 +8,18 @@
     <p> 
         <b>Prénom, nom :</b> {{employe }} 
         <br>
-        <b>Age :</b> {{employe.age}} ans
+        {# si l'employe na pas donner sa date de naissance alors on ne peut pas avoir son age non plus #}
+        <b>Date de naissance :</b> {% if employe.dateNaissance %}
+                                        {{employe.dateNaissance | date ("d/m/Y") }} 
+                                        <br>
+                                        <b>Age :</b> {{employe.age}} ans
+                                    {% else %}
+                                        Non renseignée
+                                        <br>
+                                        <b>Age : </b> Non renseigné
+                                    {% endif %} 
         <br>
-        <b>Ville :</b>  {% if employe.ville %}
-                            {{employe.ville }}
-                        {% else %}
-                            Non renseignée
-                        {% endif %} 
-        <br>
-        <b>Date de naissance :</b> {{employe.dateNaissance | date ("d/m/Y") }} 
+        <b>Ville :</b> {{employe.ville }}                 
         <br>
         <b>Date d'embauche : </b> {{employe.dateEmbauche | date ("d/m/Y") }} 
         <br>

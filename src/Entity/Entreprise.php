@@ -15,10 +15,10 @@ class Entreprise
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
+    // on cree un attribut raisonSociale qui est un string null, il peut faire maximum 100 de longueur
     #[ORM\Column(length: 100)]
     private ?string $raisonSociale = null;
-
+    // on cree l'attibut d'une date qui est d'abord null
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCreation = null;
 
@@ -34,10 +34,12 @@ class Entreprise
     /**
      * @var Collection<int, Employe>
      */
+    // on cree la clé étrangère Entreprise 1-n Employé == Employé 1-1 Entreprise, oprhanRemoval
     #[ORM\OneToMany(targetEntity: Employe::class, mappedBy: 'entreprise', orphanRemoval: true)]
-    #[ORM\OrderBy(["nom" => "ASC"])] // on odronne dans l'ordre croissant le nom du salrié
+    #[ORM\OrderBy(["nom" => "ASC"])] // on odronne dans l'ordre croissant le nom de l'employé
     private Collection $employes;
 
+    //permet de déclarer le constructeur pour la classe
     public function __construct()
     {
         $this->employes = new ArrayCollection();
@@ -52,7 +54,6 @@ class Entreprise
     {
         return $this->raisonSociale;
     }
-
     public function setRaisonSociale(string $raisonSociale): static
     {
         $this->raisonSociale = $raisonSociale;
@@ -64,7 +65,6 @@ class Entreprise
     {
         return $this->dateCreation;
     }
-
     public function setDateCreation(\DateTimeInterface $dateCreation): static
     {
         $this->dateCreation = $dateCreation;
@@ -76,7 +76,6 @@ class Entreprise
     {
         return $this->adresse;
     }
-
     public function setAdresse(string $adresse): static
     {
         $this->adresse = $adresse;
@@ -88,7 +87,6 @@ class Entreprise
     {
         return $this->cp;
     }
-
     public function setCp(string $cp): static
     {
         $this->cp = $cp;
@@ -100,7 +98,6 @@ class Entreprise
     {
         return $this->ville;
     }
-
     public function setVille(string $ville): static
     {
         $this->ville = $ville;
@@ -139,7 +136,7 @@ class Entreprise
     }
 
     public function getAdresseComplete():string { 
-        return $this->adresse .' '. $this->cp .' '. $this->ville;
+        return $this->adresse .', '. $this->cp .'-'. $this->ville;
     }
     public function getDateCreationFr ():string { 
         return $this->dateCreation->format("D d M Y");

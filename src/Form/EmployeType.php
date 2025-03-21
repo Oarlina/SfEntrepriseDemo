@@ -14,22 +14,25 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class EmployeType extends AbstractType
 {
+    // FormBuilder = c'est un objet. il permet de faire les champs du formulaires
+    // :void = 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            // -> add rejoute un élément au formulaire, ici c'est le nom qui est du text 
             ->add('nom', TextType::class, array('attr'=> 
             [
                 'class' => 'form-control'
-            ])) // le array() est du bootstrap
+            ])) // le array() est du bootstrap cela permet de styliser la ligne
 
             ->add('prenom', TextType::class, array('attr'=> 
             [
                 'class' => 'form-control'
             ]))
-
+            // ici on a un élément qui est un dateTime
             ->add('dateNaissance', null, 
             [
-                'widget' => 'single_text',
+                'widget' => 'single_text', // single_text permet d'enrgistrer la date directement, on a choice qui donne une liste deroulant et text ou on doit inserer la date nous meme 
                 'attr'=> [
                     'class' => 'form-control'
                 ]
@@ -56,7 +59,7 @@ class EmployeType extends AbstractType
                     'class' => 'form-control'
                 ] // on dit qu'elle entity on lie et qu'est ce qu'on doit afficher 
             ])
-
+            // on rajoute u bouton pour valider le formulaire (on peut cliquer dessus que si tous les champs du formulaires sont remplis)
             ->add('Valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-success'

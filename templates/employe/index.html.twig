@@ -8,11 +8,11 @@
     <br>
     <table class="table table-striped">
         <tbody>
-            {% for employe in employes %}
-                <tr><th>
-                    <a href="{{ path('show_employe', {'id':employe.id}) }}">{{employe }}</a><br>
-                </th></tr>
-            {% endfor %}
+                {% for employe in employes %}
+                    <tr><th>
+                        <a href="{{ path('show_employe', {'id':employe.id}) }}">{{employe}}</a><br>
+                    </th></tr>
+                {% endfor %}
         </tbody>
     </table>
     
